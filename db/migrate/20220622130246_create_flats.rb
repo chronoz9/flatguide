@@ -4,7 +4,8 @@ class CreateFlats < ActiveRecord::Migration[7.0]
       t.string :name
       t.decimal :latitude, precision: 15, scale: 10
       t.decimal :longitude, precision: 15, scale: 10
-
+      t.text :address
+      
       t.timestamps
     end
   end

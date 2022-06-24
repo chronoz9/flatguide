@@ -4,8 +4,9 @@ class CreateNeighborhoods < ActiveRecord::Migration[7.0]
       t.string :name
       t.decimal :latitude, precision: 15, scale: 10
       t.decimal :longitude, precision: 15, scale: 10
-      t.integer :radius
-
+      t.decimal :radius
+      t.text :address
+      
       t.timestamps
     end
   end

@@ -1,34 +1,9 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 - The traffic to your backend API is distributed over multiple servers, and the servers use rolling deployment (e.g. in AWS Elastic Beanstalk). In such a scenario a migration would run when the new code gets deployed to the first server in the instance cluster.
     
   You need rename a column in the database. What could go wrong on deployment? And how would you handle this to avoid possible errors and issues for the users of the application?
 
-+ One of the thing that could be a concern on deployment would be the inconsistency of data access. 
-    
++ assuming we have one database server and three application server. when the first cluster is updated, means the database will already be updated also, then a simple rename will possibly break the other two running server, because the old version will still look up to the old column name. I think one of the mitigation for this is not to simply rename it, but the migration should create another column with the new name, copy the existing data from old column to the new one. this way we make sure that the old version that is still running can work as it is, while the new version will be able to access the existing data from the new column. after the deployment finished, we will need to make sure that the data in the new column is syncronized with the old column.
+
 - You have taken over an application where you need to refactor a controller with 500 lines and a lot of complex logic. How would you organize the code? What options are available?
 
 + The goal for refactoring usually would be decluttering for sepearation of concern, readability, testability and maintainability. I will see if there are any repetition and group them to be a method if possible, slim down unnecessary variables, pick apart the logics written in there and separate whichever concern that can be taken out to be independent module. 
@@ -62,13 +37,14 @@ POST users - register user
 GET users/:id - get a user
 PUT users/:id - update a user
 DELETE users/:id - delete a user
+GTE users/:id/flat - get flat of user
 
 GET flats - get all flats
 POST flats - add a flat
 GET flats/:id - get a flat
 PUT flats/:id - update a flat
 DELETE flats/:id - remove a flat
-GET flats/users - get flat users
+GET flats/:id/users - get flat users
 
 GET neighborhoods - get all neighborhoods
 POST neighborhoods - add a neighborhood
