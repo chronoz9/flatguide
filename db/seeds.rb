@@ -23,5 +23,5 @@ t.save(validate: false)
 t.users.create(name: 'Lily', email: 'lily@tucker.com')
 t.users.create(name: 'Cameron', email: 'cameron@tucker.com')
 
-Neighborhood.new(name: 'Canggu', latitude: -8.6464004379, longitude: 115.138385080, radius: 0.7).save(validate: false)
+Neighborhood.new(name: 'Canggu', latitude: -8.6464004379, longitude: 115.138385080, radius: 0.8).save(validate: false)
 Neighborhood.new(name: 'Kedonganan', latitude:-8.7586213161, longitude: 115.173604470, radius: 2).save(validate: false)
